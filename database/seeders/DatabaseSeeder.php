@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Pengiriman Data Ke Dalam Table di DB
-        // $this->call(PostsSeeder::class);
+        $this->call(PostsSeeder::class);
         $this->call(BarangsSeeder::class);
         $this->call(PembeliansSeeder::class);
         $this->call(PesanansSeeder::class);

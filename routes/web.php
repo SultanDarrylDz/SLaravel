@@ -88,3 +88,69 @@ Route::get('biodata/{nama?}/{alamat?}/{jj?}/{tb?}/{bb?}', function(
 });
 
 // ======================================================================================= //
+
+// Mengakses Data Melalui Model
+Route::get('tesmodel', function(){
+    $query = App\Models\Post::all();
+    return $query;
+});
+// Mencari Data Berdasarkan Parameter
+Route::get('tesmodel/{id}', function($id){
+    $query = App\Models\Post::find($id);
+    return $query;
+});
+// Mencari Data Berdasakan field 'title' Yang Sama Dengan Parameter 's'
+Route::get('tesmodel-cari/{search}', function($s){
+    $query = \App\Models\Post::where('title', 'like', "%$s%")->get();
+    return $query;
+});
+// Mengubah Judul Dari Data ke-2 Berdasarkan 'id'
+Route::get('tesmodel-update', function(){
+    $query = App\Models\Post::find(2);
+    $query->title = "Bane Si Bajak Laut";
+    $query->save();
+    return $query;
+});
+// Mengubah Data Baru
+Route::get('tesmodel-add', function(){
+    $query = new App\Models\Post();
+    $query->title = "Sholawat Penghapus Maksiat";
+    $query->content = "Lorem Ipsum";
+    $query->save();
+    return $query;
+});
+// Menghapus Data
+Route::get('tesmodel-delete/{id}', function($id){
+    $query = App\Models\Post::find($id);
+    $query->delete();
+    return redirect ('/tesmodel');
+});
+
+// ======================================================================================= //
+// Tugas Menampilkan Data
+Route::get('barang', function(){
+    $query = App\Models\Barang::all();
+    return $query;
+});
+
+Route::get('pembeli', function(){
+    $query = App\Models\Pembeli::all();
+    return $query;
+});
+
+Route::get('pembelian', function(){
+    $query = App\Models\Pembelian::all();
+    return $query;
+});
+
+Route::get('pesanan', function(){
+    $query = App\Models\Pesanan::all();
+    return $query;
+});
+
+Route::get('suplier', function(){
+    $query = App\Models\Suplier::all();
+    return $query;
+});
+
+// ======================================================================================= //
